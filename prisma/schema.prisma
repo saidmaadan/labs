@@ -1,5 +1,6 @@
+// This is your Prisma schema file
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -51,7 +52,7 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  userAgent    String?  @db.Text
+  userAgent    String?
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -60,7 +61,7 @@ model User {
   name             String?
   email            String?    @unique
   emailVerified    DateTime?
-  image            String?    @db.Text
+  image            String?
   password         String?
   role             Role       @default(USER)
   resetToken       String?
@@ -70,6 +71,7 @@ model User {
   accounts         Account[]
   sessions         Session[]
   projects         Project[]
+  
   posts            Post[]
   campaigns        Campaign[]
 }
@@ -86,11 +88,11 @@ model Project {
   id           String              @id @default(cuid())
   title        String
   slug         String              @unique
-  description  String?             @db.Text
+  description  String?
   content      String              @db.Text
-  image        String?             @db.Text
-  demoUrl      String?             @db.Text
-  githubUrl    String?             @db.Text
+  image        String?
+  demoUrl      String?
+  githubUrl    String?
   category     String?
   status       String              @default("DRAFT")
   technologies ProjectTechnology[]
@@ -108,31 +110,36 @@ model Category {
   id          String   @id @default(cuid())
   name        String
   slug        String   @unique
-  description String?  @db.Text
-  seoTitle    String?  @db.Text
+  description String?
+  seoTitle    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
   posts       Post[]
 }
 
+
+
 model Post {
-  id              String   @id @default(cuid())
-  title           String
-  slug            String   @unique
-  content         String   @db.Text
-  excerpt         String?  @db.Text
-  featured        Boolean  @default(false)
-  published       Boolean  @default(false)
-  imageUrl        String?  @db.Text
-  categoryId      String
-  authorId        String
-  category        Category @relation(fields: [categoryId], references: [id])
-  author          User     @relation(fields: [authorId], references: [id])
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  metaTitle       String?  @db.Text
-  metaDescription String?  @db.Text
-  metaKeywords    String?  @db.Text
+  id         String   @id @default(cuid())
+  title      String
+  slug       String   @unique
+  content    String   @db.Text
+  excerpt    String?  @db.Text
+  featured   Boolean  @default(false)
+  published  Boolean  @default(false)
+  imageUrl   String?
+  categoryId String
+  authorId   String
+  category   Category @relation(fields: [categoryId], references: [id])
+  author     User     @relation(fields: [authorId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // SEO fields
+  metaTitle       String?
+  metaDescription String? @db.Text
+  metaKeywords    String?
 }
 
 model Technology {
@@ -140,7 +147,7 @@ model Technology {
   name        String              @unique
   slug        String              @unique
   description String?             @db.Text
-  icon        String?             @db.Text
+  icon        String?
   projects    ProjectTechnology[]
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
@@ -162,7 +169,7 @@ model Tag {
   id          String       @id @default(cuid())
   name        String       @unique
   slug        String       @unique
-  description String?      @db.Text
+  description String?
   projects    ProjectTag[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -181,18 +188,19 @@ model ProjectTag {
 }
 
 model Subscriber {
-  id                String               @id @default(cuid())
-  email             String               @unique
-  firstName         String?
-  lastName          String?
-  status            SubscriptionStatus   @default(PENDING)
-  confirmationToken String?              @unique
-  confirmedAt       DateTime?
-  unsubscribedAt    DateTime?
-  metadata          Json?
-  campaigns         CampaignSubscriber[]
-  createdAt         DateTime             @default(now())
-  updatedAt         DateTime             @updatedAt
+  id        String  @id @default(cuid())
+  email     String  @unique
+  firstName String?
+  lastName  String?
+
+  status             SubscriptionStatus   @default(PENDING)
+  confirmationToken  String?              @unique
+  confirmedAt        DateTime?
+  unsubscribedAt     DateTime?
+  metadata           Json?                @default("{}")
+  campaigns          CampaignSubscriber[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
   campaignEmailEvent CampaignEmailEvent[]
 
   @@index([email])
@@ -204,7 +212,7 @@ model EmailTemplate {
   name        String     @unique
   subject     String
   content     String     @db.Text
-  description String?    @db.Text
+  description String?
   isDefault   Boolean    @default(false)
   campaigns   Campaign[]
   createdAt   DateTime   @default(now())
@@ -216,7 +224,7 @@ model Campaign {
   name               String
   subject            String
   content            String               @db.Text
-  type               String?
+  type               String?              // REGULAR, WELCOME, ONBOARDING, etc.
   status             CampaignStatus       @default(DRAFT)
   scheduledFor       DateTime?
   sentAt             DateTime?
@@ -225,7 +233,7 @@ model Campaign {
   authorId           String
   author             User                 @relation(fields: [authorId], references: [id])
   subscribers        CampaignSubscriber[]
-  metadata           Json?
+  metadata           Json?                @default("{}")
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
   CampaignEmailEvent CampaignEmailEvent[]
@@ -246,7 +254,7 @@ model CampaignSubscriber {
   clickedAt    DateTime?
   bounced      Boolean    @default(false)
   bouncedAt    DateTime?
-  error        String?    @db.Text
+  error        String?
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
@@ -261,12 +269,12 @@ model CampaignEmailEvent {
   campaign     Campaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
   subscriberId String
   subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
-  type         String
-  url          String?    @db.Text
-  userAgent    String?    @db.Text
-  ipAddress    String?
+  type         String // OPEN, CLICK, BOUNCE, COMPLAINT
+  url          String? // For click events
+  userAgent    String? // Browser/email client info
+  ipAddress    String? // IP address of the event
   createdAt    DateTime   @default(now())
-  metadata     Json?
+  metadata     Json? // Additional event data
 
   @@index([campaignId])
   @@index([subscriberId])
