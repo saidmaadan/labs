@@ -1,0 +1,283 @@
+// This is your Prisma schema file
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum SubscriptionStatus {
+  SUBSCRIBED
+  UNSUBSCRIBED
+  PENDING
+  BOUNCED
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  FAILED
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  userAgent    String?
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id               String     @id @default(cuid())
+  name             String?
+  email            String?    @unique
+  emailVerified    DateTime?
+  image            String?
+  password         String?
+  role             Role       @default(USER)
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  accounts         Account[]
+  sessions         Session[]
+  projects         Project[]
+  
+  posts            Post[]
+  campaigns        Campaign[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Project {
+  id           String              @id @default(cuid())
+  title        String
+  slug         String              @unique
+  description  String?
+  content      String              @db.Text
+  image        String?
+  demoUrl      String?
+  githubUrl    String?
+  category     String?
+  status       String              @default("DRAFT")
+  technologies ProjectTechnology[]
+  featured     Boolean             @default(false)
+  published    Boolean             @default(false)
+  publishedAt  DateTime?
+  authorId     String
+  tags         ProjectTag[]
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+  author       User                @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  seoTitle    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  posts       Post[]
+}
+
+
+
+model Post {
+  id         String   @id @default(cuid())
+  title      String
+  slug       String   @unique
+  content    String   @db.Text
+  excerpt    String?  @db.Text
+  featured   Boolean  @default(false)
+  published  Boolean  @default(false)
+  imageUrl   String?
+  categoryId String
+  authorId   String
+  category   Category @relation(fields: [categoryId], references: [id])
+  author     User     @relation(fields: [authorId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // SEO fields
+  metaTitle       String?
+  metaDescription String? @db.Text
+  metaKeywords    String?
+}
+
+model Technology {
+  id          String              @id @default(cuid())
+  name        String              @unique
+  slug        String              @unique
+  description String?             @db.Text
+  icon        String?
+  projects    ProjectTechnology[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model ProjectTechnology {
+  projectId    String
+  technologyId String
+  project      Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology   Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+
+  @@id([projectId, technologyId])
+  @@index([projectId])
+  @@index([technologyId])
+}
+
+model Tag {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  slug        String       @unique
+  description String?
+  projects    ProjectTag[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model ProjectTag {
+  projectId String
+  tagId     String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@id([projectId, tagId])
+  @@index([projectId])
+  @@index([tagId])
+}
+
+model Subscriber {
+  id        String  @id @default(cuid())
+  email     String  @unique
+  firstName String?
+  lastName  String?
+
+  status             SubscriptionStatus   @default(PENDING)
+  confirmationToken  String?              @unique
+  confirmedAt        DateTime?
+  unsubscribedAt     DateTime?
+  metadata           Json?                @default("{}")
+  campaigns          CampaignSubscriber[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  campaignEmailEvent CampaignEmailEvent[]
+
+  @@index([email])
+  @@index([status])
+}
+
+model EmailTemplate {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  subject     String
+  content     String     @db.Text
+  description String?
+  isDefault   Boolean    @default(false)
+  campaigns   Campaign[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Campaign {
+  id                 String               @id @default(cuid())
+  name               String
+  subject            String
+  content            String               @db.Text
+  type               String?              // REGULAR, WELCOME, ONBOARDING, etc.
+  status             CampaignStatus       @default(DRAFT)
+  scheduledFor       DateTime?
+  sentAt             DateTime?
+  templateId         String?
+  template           EmailTemplate?       @relation(fields: [templateId], references: [id])
+  authorId           String
+  author             User                 @relation(fields: [authorId], references: [id])
+  subscribers        CampaignSubscriber[]
+  metadata           Json?                @default("{}")
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  CampaignEmailEvent CampaignEmailEvent[]
+
+  @@index([status])
+  @@index([authorId])
+  @@index([type])
+}
+
+model CampaignSubscriber {
+  id           String     @id @default(cuid())
+  campaignId   String
+  subscriberId String
+  campaign     Campaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+  sentAt       DateTime?
+  openedAt     DateTime?
+  clickedAt    DateTime?
+  bounced      Boolean    @default(false)
+  bouncedAt    DateTime?
+  error        String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([campaignId, subscriberId])
+  @@index([campaignId])
+  @@index([subscriberId])
+}
+
+model CampaignEmailEvent {
+  id           String     @id @default(cuid())
+  campaignId   String
+  campaign     Campaign   @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  subscriberId String
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+  type         String // OPEN, CLICK, BOUNCE, COMPLAINT
+  url          String? // For click events
+  userAgent    String? // Browser/email client info
+  ipAddress    String? // IP address of the event
+  createdAt    DateTime   @default(now())
+  metadata     Json? // Additional event data
+
+  @@index([campaignId])
+  @@index([subscriberId])
+  @@index([type])
+  @@index([createdAt])
+}

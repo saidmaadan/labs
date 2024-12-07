@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Grid -->
+  <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  </pattern>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Abstract Shapes -->
+  <circle cx="400" cy="300" r="150" fill="url(#gradient1)" opacity="0.5"/>
+  <circle cx="450" cy="250" r="100" fill="url(#gradient2)" opacity="0.6"/>
+  <circle cx="350" cy="350" r="120" fill="url(#gradient3)" opacity="0.4"/>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient3" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Connecting Lines -->
+  <path d="M 400 150 Q 500 200 450 300" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/>
+  <path d="M 350 350 Q 250 300 300 200" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/>
+  <path d="M 450 250 Q 400 400 350 350" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/>
+
+  <!-- Dots -->
+  <circle cx="400" cy="150" r="4" fill="white"/>
+  <circle cx="450" cy="300" r="4" fill="white"/>
+  <circle cx="300" cy="200" r="4" fill="white"/>
+  <circle cx="350" cy="350" r="4" fill="white"/>
+</svg>
