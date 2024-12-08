@@ -35,7 +35,7 @@ export default function Privacy() {
             </div>
             <div className="mb-10">
             <h2 className="text-xl mb-4">Contact Us</h2>
-            <p className="text-sm mb-6">If you have any questions about our privacy policy or how we use personal information, please contact us at info@inventivelabs.co.</p>
+            <p className="text-sm mb-6">If you have any questions about our privacy policy or how we use personal information, please contact us at info[at]inventivelabs.co.</p>
             </div>
         </div>        
     );
