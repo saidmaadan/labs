@@ -146,7 +146,8 @@ export function Navbar() {
                   </Link>
                 ))}
                 <div className="pt-4">
-                  {session ? (
+                  { session?.user ?  (
+                    
                     <Button
                       variant="ghost"
                       onClick={() => {
