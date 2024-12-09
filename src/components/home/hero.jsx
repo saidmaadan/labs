@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden mt-20 py-20 md:py-32">
+    <section className="relative overflow-hidden py-20 md:py-32">
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-background md:justify-end">
         <div className="aspect-square w-full max-w-2xl rounded-full bg-gradient-to-tr from-primary/20 to-primary/0 blur-3xl" />
@@ -55,7 +55,7 @@ export function Hero() {
             className="mt-16 flex items-center justify-center gap-8 grayscale"
           >
             <div className="space-y-3 text-center">
-              <h3 className="text-3xl font-bold">100+</h3>
+              <h3 className="text-3xl font-bold">200+</h3>
               <p className="text-sm text-muted-foreground">Projects Delivered</p>
             </div>
             <div className="h-12 w-px bg-border" />

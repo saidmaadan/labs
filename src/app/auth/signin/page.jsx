@@ -10,16 +10,16 @@ export const metadata = {
 
 export default function SignInPage() {
   return (
-    <Shell className="max-w-lg my-auto mt-20 md:mt-30">
-      <div className="flex flex-col space-y-4 text-center">
+    <Shell className="max-w-lg my-auto mx-auto">
+      <div className="flex flex-col w-screen h-screen space-y-4 items-center justify-center text-center">
         <div className="space-y-2">
           <Link href="/">
-          <h1 className="text-3xl font-bold ">InventiveLabs</h1>
+          <h1 className="text-3xl font-bold mb-10 ">InventiveLabs</h1>
           </Link>
-          <h1 className="text-lg ">Welcome back</h1>
+          {/* <h1 className="text-lg ">Welcome back</h1>
           <p className="text-muted-foreground">
             Choose your preferred sign in method
-          </p>
+          </p> */}
         </div>
         <SignInForm />
         <p className="text-sm text-muted-foreground">
