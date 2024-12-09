@@ -31,7 +31,11 @@ export default function CategoriesPage() {
     try {
       const response = await fetch("/api/categories");
       const data = await response.json();
-      setCategories(data);
+      if (data.success) {
+        setCategories(data.result);
+      } else {
+        toast.error(data.error || "Failed to fetch categories");
+      }
     } catch (error) {
       toast.error("Failed to fetch categories");
     } finally {

@@ -28,7 +28,7 @@ export function CompanyStats() {
   });
 
   return (
-    <section className="py-16 bg-primary text-white">
+    <section className="py-16 bg-black text-white">
       <div className="container px-4 md:px-6">
         <div
           ref={ref}

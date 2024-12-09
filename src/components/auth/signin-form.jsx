@@ -41,7 +41,7 @@ export function SignInForm() {
   const [isGoogleLoading, setIsGoogleLoading] = React.useState(false);
   const searchParams = useSearchParams();
   
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   async function onSubmit(data) {
     setIsLoading(true);
@@ -66,18 +66,18 @@ export function SignInForm() {
   }
 
   return (
-    <div className="grid gap-6">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="grid gap-6 items-center mt-20 my-auto">
+      <form onSubmit={handleSubmit(onSubmit)} >
         <Card>
           <CardHeader>
-            <CardTitle>Email</CardTitle>
+            <CardTitle></CardTitle>
             <CardDescription>
               Enter your email to receive a magic link
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              {/* <Label htmlFor="email">Email</Label> */}
               <Input
                 id="email"
                 placeholder="name@example.com"

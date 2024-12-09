@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Bot, Code, Database, LineChart, Star } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
@@ -59,23 +60,23 @@ const testimonials = [
   {
     content:
       "InventiveLabs transformed our customer service with their AI solution. The implementation was smooth, and the results exceeded our expectations.",
-    author: "Sarah Johnson",
+    author: "Sarah Maxwell",
     role: "CTO",
-    company: "TechCorp Inc.",
+    company: "eTechCorp Inc.",
   },
   {
     content:
       "Working with InventiveLabs was a game-changer for our data analytics. Their expertise and dedication to quality are unmatched.",
-    author: "Michael Chen",
+    author: "Bryan Matt",
     role: "Head of Data",
-    company: "DataFlow Systems",
+    company: "DataFlow LLC",
   },
   {
     content:
       "The software development team at InventiveLabs delivered our project on time and with exceptional quality. Highly recommended!",
-    author: "Emily Rodriguez",
+    author: "Emily Rodney",
     role: "Product Manager",
-    company: "Innovation Hub",
+    company: "KamaTech Inc.",
   },
 ];
 
@@ -144,9 +145,9 @@ export default function ServicesPage() {
               ready to create a custom solution for your needs.
             </p>
             <div className="mt-10 flex items-center justify-center gap-4">
-              <Button size="lg">Get Started</Button>
+              <Button size="lg"><Link href="/contact">Get Started</Link></Button>
               <Button variant="outline" size="lg">
-                Learn More
+                <Link href="/about">Learn More</Link>
               </Button>
             </div>
           </div>
@@ -164,11 +165,11 @@ export default function ServicesPage() {
                 transition={{ delay: index * 0.1 }}
                 className="relative rounded-2xl border bg-card p-6 shadow"
               >
+                {/* <Star className="h-5 w-5 text-yellow-400" />
                 <Star className="h-5 w-5 text-yellow-400" />
                 <Star className="h-5 w-5 text-yellow-400" />
                 <Star className="h-5 w-5 text-yellow-400" />
-                <Star className="h-5 w-5 text-yellow-400" />
-                <Star className="h-5 w-5 text-yellow-400" />
+                <Star className="h-5 w-5 text-yellow-400" /> */}
                 <p className="mt-4 text-sm text-foreground/60">{testimonial.content}</p>
                 <div className="mt-6">
                   <p className="font-semibold">{testimonial.author}</p>
