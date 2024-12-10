@@ -1,6 +1,12 @@
 "use client"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { useEffect, useState } from "react"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { format } from "date-fns";
+import { Badge } from "@/components/ui/badge";
+import { toast } from "sonner";
 
 const projects = [
   {
@@ -26,6 +32,29 @@ const projects = [
 ]
 
 export function RecentProjects() {
+  // const [projects, setProjects] = useState([]);
+  // const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   fetchProjects();
+  // }, []);
+  
+  // const fetchProjects = async () => {
+  //     try {
+  //       const response = await fetch("/api/projects?limit=8");
+  //       const data = await response.json();
+  //       if (data.success) {
+  //         setProjects(data.result);
+  //       } else {
+  //         toast.error(data.error || "Failed to fetch projects");
+  //       }
+  //     }catch (error) {
+  //         toast.error("Failed to fetch projects");
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  // };
+    
   return (
     <div className="space-y-8">
       {projects.map((project, index) => (
