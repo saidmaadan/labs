@@ -25,7 +25,7 @@ export default function SignInPage() {
       </div>
 
       {/* Right Column - Login Form */}
-      <div className="w-full flex items-center justify-center p-8 bg-[#0a1c22]">
+      <div className="w-full flex items-center justify-center p-8 ">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-8">Welcome Back...</h1>
