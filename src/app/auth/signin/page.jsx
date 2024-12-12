@@ -7,12 +7,12 @@ export const metadata = {
   title: "Sign In",
   description: "Sign in to your account",
 };
-
+//  
 export default function SignInPage() {
   return (
-    <div className="w-full grid md:grid-cols-2 min-h-screen">
+    <div className="grid md:grid-cols-2 min-h-screen m-0">
       {/* Left Column - Hidden on medium screens */}
-      <div className="hidden md:flex flex-col bg-[#0a1c22] text-white p-10 justify-between">
+      <div className="hidden md:flex flex-col bg-[#3a1047] text-white p-10 justify-between">
         <div className=""></div>
         <div className="space-y-4">
           <Link href="/">
@@ -25,7 +25,7 @@ export default function SignInPage() {
       </div>
 
       {/* Right Column - Login Form */}
-      <div className="w-full flex items-center justify-center p-8 ">
+      <div className="flex items-center justify-center p-8">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-8">Welcome Back...</h1>
