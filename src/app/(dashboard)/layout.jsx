@@ -82,11 +82,11 @@ function DashboardLayoutContent({ children }) {
         if (data?.user) {
           setUser(data.user);
         } else {
-          router.push("/sign-in");
+          router.push("/auth/signin");
         }
       } catch (error) {
         toast.error("Failed to load user session");
-        router.push("/sign-in");
+        router.push("/auth/signin");
       }
     }
 
@@ -96,7 +96,7 @@ function DashboardLayoutContent({ children }) {
   const handleLogout = async () => {
     try {
       await signOut({ redirect: false });
-      router.push("/sign-in");
+      router.push("/auth/signin");
     } catch (error) {
       toast.error("Failed to sign out");
     }
