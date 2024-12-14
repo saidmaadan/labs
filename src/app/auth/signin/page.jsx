@@ -12,7 +12,7 @@ export default function SignInPage() {
   return (
     <div className="grid md:grid-cols-2 min-h-screen m-0">
       {/* Left Column - Hidden on medium screens */}
-      <div className="hidden md:flex flex-col bg-[#3a1047] text-white p-10 justify-between">
+      <div className="hidden md:flex flex-col bg-[#3c1181] text-white p-10 justify-between">
         <div className=""></div>
         <div className="space-y-4">
           <Link href="/">
@@ -31,12 +31,12 @@ export default function SignInPage() {
             <h1 className="text-3xl font-bold mb-8">Welcome Back...</h1>
           </div>
           <SignInForm />
-          <p className="text-sm text-muted-foreground text-center">
+          {/* <p className="text-sm text-muted-foreground text-center">
             Don't have an account?{" "}
             <Link href="/auth/signin" className="underline underline-offset-4 hover:text-primary">
               Sign up
             </Link>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
