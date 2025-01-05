@@ -37,3 +37,4 @@ export default function AuthLayout({ children }) {
     </div>
   );
 }
+export const runtime = 'nodejs';
