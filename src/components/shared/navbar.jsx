@@ -35,7 +35,7 @@ export function Navbar() {
     try {
       await signOut({ 
         callbackUrl: '/',
-        redirect: true 
+        redirect: false 
       })
     } catch (error) {
       console.error('Sign out error:', error)
@@ -109,10 +109,10 @@ export function Navbar() {
             ) : (
               <>
                 {/* <Button asChild variant="ghost">
-                  <Link href="/auth/signin">Sign In</Link>
+                  <Link href="/login">Sign In</Link>
                 </Button> */}
                 <Button asChild>
-                  <Link href="/auth/signin">Get Started</Link>
+                  <Link href="/login">Get Started</Link>
                 </Button>
               </>
             )}
@@ -165,7 +165,7 @@ export function Navbar() {
                       className="text-lg font-medium w-full justify-start"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Link href="/auth/signin">Sign In</Link>
+                      <Link href="/login">Sign In</Link>
                     </Button>
                   )}
                 </div>
@@ -242,10 +242,10 @@ export function Navbar() {
 //             ) : (
 //               <>
 //                 {/* <Button asChild variant="ghost">
-//                   <Link href="/auth/signin">Sign In</Link>
+//                   <Link href="/login">Sign In</Link>
 //                 </Button> */}
 //                 <Button asChild>
-//                   <Link href="/auth/signin">Get Started</Link>
+//                   <Link href="/login">Get Started</Link>
 //                 </Button>
 //               </>
 //             )}
@@ -296,7 +296,7 @@ export function Navbar() {
 //                       className="text-lg font-medium w-full justify-start"
 //                       onClick={() => setIsOpen(false)}
 //                     >
-//                       <Link href="/auth/signin">Sign In</Link>
+//                       <Link href="/login">Sign In</Link>
 //                     </Button>
 //                   )}
 //                 </div>
