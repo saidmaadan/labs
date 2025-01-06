@@ -100,7 +100,7 @@ export async function POST(request) {
     console.log("Sending verification email...");
     try {
       const emailResult = await resend.emails.send({
-        from: "noreply@sales@inventivelabs.co",
+        from: "noreply@book.sophiabent.com",
         to: email,
         subject: "Verify your email",
         html: `

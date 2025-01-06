@@ -52,7 +52,6 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  userAgent    String?
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -64,24 +63,34 @@ model User {
   image            String?
   password         String?
   role             Role       @default(USER)
-  resetToken       String?
-  resetTokenExpiry DateTime?
   createdAt        DateTime   @default(now())
   updatedAt        DateTime   @updatedAt
   accounts         Account[]
   sessions         Session[]
   projects         Project[]
-  
+  verificationToken VerificationToken?
   posts            Post[]
   campaigns        Campaign[]
+  
+  @@map(name: "users")
 }
 
 model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
+  id        String   @id @default(cuid())
+  token     String   @unique
+  expires   DateTime
+  email     String   @unique
+  user      User     @relation(fields: [email], references: [email], onDelete: Cascade)
 
-  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expires   DateTime
+  createdAt DateTime @default(now())
 }
 
 model Project {
@@ -117,8 +126,6 @@ model Category {
   
   posts       Post[]
 }
-
-
 
 model Post {
   id         String   @id @default(cuid())
