@@ -79,7 +79,7 @@ export function Navbar() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
                   <div className="flex items-center justify-start gap-2 p-2">
-                    <div className="flex flex-col space-y-1 leading-none">
+                    <div className="flex flex-col space-y-3 leading-none">
                       {session.user.name && (
                         <p className="font-medium">{session.user.name}</p>
                       )}
@@ -87,7 +87,16 @@ export function Navbar() {
                         <p className="w-[200px] truncate text-sm text-muted-foreground">
                           {session.user.email} - {session.user.role}
                         </p>
-                      )}
+                        )}
+                      {session.user.role === 'ADMIN' ? (
+                        <Link href="/admin" onClick={() => setIsOpen(false)}>
+                          Admin Dashboard
+                          </Link>
+                        ) : session.user.role === 'USER' ? (
+                        <Link href="/dashboard" onClick={() => setIsOpen(false)}>
+                          Dashboard
+                        </Link>
+                      ) : null}
                     </div>
                   </div>
                   <DropdownMenuSeparator />
