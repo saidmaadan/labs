@@ -22,7 +22,7 @@ const navigation = [
   { name: "Projects", href: "/projects" },
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  
 ];
 
 export function Navbar() {
@@ -112,7 +112,7 @@ export function Navbar() {
                   <Link href="/login">Sign In</Link>
                 </Button> */}
                 <Button asChild>
-                  <Link href="/login">Get Started</Link>
+                  <Link href="/contact">Let's get started</Link>
                 </Button>
               </>
             )}
@@ -165,7 +165,7 @@ export function Navbar() {
                       className="text-lg font-medium w-full justify-start"
                       onClick={() => setIsOpen(false)}
                     >
-                      <Link href="/login">Sign In</Link>
+                      <Link href="/contact">Let's get started!</Link>
                     </Button>
                   )}
                 </div>
