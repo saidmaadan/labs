@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL
 export async function GET(req, { params }) {
   try {
     const token = params.token
@@ -81,7 +82,7 @@ export async function GET(req, { params }) {
     }
 
     console.log("Confirmation successful, redirecting to success page")
-    const baseUrl = new URL(req.url).origin
+    // const baseUrl = new URL(req.url).origin
     return NextResponse.redirect(`${baseUrl}/newsletter/confirmed`)
   } catch (error) {
     console.error("[NEWSLETTER_CONFIRM] Error details:", {
@@ -89,7 +90,7 @@ export async function GET(req, { params }) {
       stack: error.stack,
       name: error.name,
     })
-    const baseUrl = new URL(req.url).origin
+    // const baseUrl = new URL(req.url).origin
     return NextResponse.redirect(`${baseUrl}/newsletter/error`)
   }
 }
