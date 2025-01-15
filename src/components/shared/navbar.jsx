@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useSession, signOut } from "next-auth/react";
+import { Logo } from "@/components/shared/logo"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,7 +20,7 @@ import {
 
 const navigation = [
   { name: "About", href: "/about" },
-  { name: "Projects", href: "/projects" },
+  // { name: "Projects", href: "/projects" },
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
   
@@ -48,7 +49,7 @@ export function Navbar() {
       <div className="container-center flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="text-xl font-bold">InventiveLabs</span>
+            <span className="text-xl font-bold"><Logo /></span>
           </Link>
           
         </div>

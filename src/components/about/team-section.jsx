@@ -51,7 +51,7 @@ const team = [
 export function TeamSection() {
   return (
     <section className="py-24 bg-white">
-      <div className="container px-4 md:px-6">
+      <div className="container-center ">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             Meet Our Leadership

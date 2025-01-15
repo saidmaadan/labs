@@ -18,7 +18,7 @@ export function Hero() {
         variants={staggerContainer}
         initial="initial"
         animate="animate"
-        className="container relative"
+        className="container-center *:relative"
       >
         <div className="mx-auto max-w-3xl text-center">
           <motion.div variants={textVariant} className="space-y-4">

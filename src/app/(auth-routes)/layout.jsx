@@ -5,7 +5,7 @@ export default function AuthLayout({ children }) {
   return (
     <div className="grid lg:grid-cols-2 min-h-screen">
       {/* Left Column - Marketing/Branding */}
-      <div className="relative hidden lg:flex flex-col bg-orange-950 text-white p-10">
+      <div className="relative hidden lg:flex flex-col bg-primary/60 text-white p-10">
         <div className="relative z-10">
           <Link href="/" className="flex items-center gap-2">
             <span className="text-2xl font-bold"><Home /></span>

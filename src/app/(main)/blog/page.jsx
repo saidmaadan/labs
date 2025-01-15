@@ -106,9 +106,9 @@ export default function BlogPage() {
 
   return (
     <div className="py-24 sm:py-32">
-      <div className="">
+      <div className="container-center">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="text-center">
           <motion.h1
             className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
             initial={{ opacity: 0, y: 20 }}
@@ -127,7 +127,7 @@ export default function BlogPage() {
         </div>
 
         {/* Two Column Layout */}
-        <div className="mx-auto mt-10 lg:max-w-7xl">
+        <div className="mt-10">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* Left Sidebar - Search and Categories */}
             <div className="lg:col-span-1">

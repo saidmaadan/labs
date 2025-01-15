@@ -40,7 +40,7 @@ export function Footer() {
 
   return (
     <footer className="border-t bg-background">
-      <div className="py-10 md:py-12 lg:py-16 px-8 md:px-16 lg:px-20 mx-auto">
+      <div className="container-center py-10 md:py-12 lg:py-16 ">
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <div className="grid grid-cols-1 mt-10">       
             <motion.div

@@ -33,7 +33,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <div className="py-24 sm:py-32">
+    <div className="w-full dark:bg-accent bg-violet-50 py-24 sm:py-32">
       <div className="">
         <div className="mx-auto max-w-2xl lg:text-center">
           <motion.h2

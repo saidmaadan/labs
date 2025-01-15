@@ -5,7 +5,7 @@ export default function MainLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="container-center min-h-screen pt-20">
+      <main className="min-h-screen pt-10">
         {children}
       </main>
       <Footer />

@@ -66,7 +66,7 @@ export function NewsletterFooter({ className }) {
   }
 
   return (
-    <section className="w-full">
+    <section className="">
       <motion.div
         variants={staggerContainer}
         initial="initial"
@@ -74,10 +74,10 @@ export function NewsletterFooter({ className }) {
         viewport={{ once: true }}
         className="container "
       >
-        <div className="mx-auto w-full text-center">
+        <div className="">
           <motion.div variants={fadeIn('up')} className="space-y-4">
-            <h3 className="text-sm font-bold tracking-tighter ">
-            Subscribe to our newsletter
+            <h3 className="text-sm text-muted-foreground ">
+            Subscribe to ours newsletter
             </h3>
             
           </motion.div>
@@ -85,11 +85,11 @@ export function NewsletterFooter({ className }) {
             <motion.form
               variants={fadeIn('up')}
               onSubmit={form.handleSubmit(onSubmit)}
-              className="mt-8 flex w-full sm:justify-center"
+              className="mt-8 flex gap-1 w-full"
             >
               
               <FormField
-                className="flex-grow"
+                className="w-[300px] "
                 control={form.control}
                 name="email"
                 render={({ field }) => (
@@ -99,7 +99,7 @@ export function NewsletterFooter({ className }) {
                         placeholder="Enter your email"
                         {...field}
                         disabled={isLoading}
-                        className="h-12"
+                        className="h-12 min-w-[250px] "
                       />
                     </FormControl>
                     <FormMessage />
@@ -129,7 +129,7 @@ export function NewsletterFooter({ className }) {
           </Form>
           <motion.p
             variants={fadeIn('up')}
-            className="mt-4 text-sm text-muted-foreground"
+            className="mt-4 text-xs text-muted-foreground"
           >
             We respect your privacy. Unsubscribe at any time.
           </motion.p>

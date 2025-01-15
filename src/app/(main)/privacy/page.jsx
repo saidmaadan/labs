@@ -1,6 +1,6 @@
 export default function Privacy() {
     return (
-        <div className="py-10">
+        <div className="container-center py-10">
             <h1 className="text-2xl mb-6 font-bold">Privacy Policy</h1>
             
             <p className="text-sm mb-6">At InventiveLabs, we understand the importance of protecting the privacy of our clients and website users. This privacy policy outlines how we collect, use, and protect personal information.</p>

@@ -110,7 +110,7 @@ export default function ContactPage() {
 
   return (
     <div className="py-24 sm:py-32">
-      <div className="">
+      <div className="container-center">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
           <motion.h1

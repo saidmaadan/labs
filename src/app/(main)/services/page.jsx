@@ -83,9 +83,9 @@ const testimonials = [
 export default function ServicesPage() {
   return (
     <div className="py-24 sm:py-32">
-      <div className="">
+      <div className="container-center">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="text-center">
           <motion.h1
             className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
             initial={{ opacity: 0, y: 20 }}
@@ -129,10 +129,11 @@ export default function ServicesPage() {
             </motion.div>
           ))}
         </div>
-
-        {/* CTA Section */}
+</div>
+      {/* CTA Section */}
+      <div className="dark:bg-accent bg-violet-50 ">
         <motion.div
-          className="mx-auto mt-24 max-w-7xl rounded-3xl bg-primary/5 px-6 py-20 sm:px-12 sm:py-24 lg:px-16"
+          className="container-center mt-24 max-w-7xl rounded-3xl py-20 sm:py-24"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -152,9 +153,10 @@ export default function ServicesPage() {
             </div>
           </div>
         </motion.div>
-
+        </div>
         {/* Testimonials */}
-        <div className="mx-auto mt-24 max-w-7xl">
+        <div className="mt-20">
+        <div className="container-center">
           <h2 className="text-center text-2xl font-semibold">What Our Clients Say</h2>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (

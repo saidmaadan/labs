@@ -28,7 +28,7 @@ export function CompanyStats() {
   });
 
   return (
-    <section className="py-16 bg-black text-white">
+    <section className="dark:border-t border-t-2 dark:border-primary/40 border-violet-100 py-16 dark:bg-accent bg-violet-50">
       <div className="container px-4 md:px-6">
         <div
           ref={ref}
@@ -45,7 +45,7 @@ export function CompanyStats() {
               <div className="text-4xl md:text-5xl font-bold mb-2">
                 {stat.number}
               </div>
-              <div className="text-sm md:text-base text-primary-foreground/80">
+              <div className="text-sm md:text-base ">
                 {stat.label}
               </div>
             </motion.div>

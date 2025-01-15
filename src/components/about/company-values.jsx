@@ -31,11 +31,11 @@ const values = [
 
 export function CompanyValues() {
   return (
-    <section className="py-24 bg-gray-50">
-      <div className="container px-4 md:px-6">
+    <section className="py-24 dark:bg-accent bg-violet-50">
+      <div className="container-center ">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Core Values</h2>
-          <p className="mt-4 text-gray-500 md:text-xl">
+          <p className="mt-4 md:text-xl">
             The principles that guide our innovation and shape our success
           </p>
         </div>
@@ -43,13 +43,13 @@ export function CompanyValues() {
           {values.map((value, index) => (
             <div
               key={index}
-              className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="flex flex-col items-center text-center p-6 dark:bg-primary/10 bg-violet-100 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             >
               <div className="p-3 bg-primary/10 rounded-full mb-4">
                 <value.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-              <p className="text-gray-500">{value.description}</p>
+              <p className="">{value.description}</p>
             </div>
           ))}
         </div>

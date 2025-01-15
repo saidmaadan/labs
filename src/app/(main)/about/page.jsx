@@ -19,22 +19,22 @@ export default function AboutPage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] min-h-[600px] dark:bg-accent bg-violet-50 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
+          {/* <Image
             src="/about/hero-bg.png"
             alt="InventiveLabs office"
             fill
             className="object-cover"
             priority
-          />
-          <div className="absolute inset-0 bg-black/50" />
+          /> */}
+          {/* <div className="absolute inset-0 bg-black/50" /> */}
         </div>
-        <div className="relative z-10 container px-4 md:px-6 text-center text-white">
+        <div className="relative z-10 container-center text-center">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
             Pioneering the Future of AI
           </h1>
-          <p className="mt-4 text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto">
+          <p className="mt-4 text-xl md:text-2xl max-w-3xl mx-auto">
             We're a team of visionary engineers and researchers pushing the boundaries
             of artificial intelligence to solve complex business challenges.
           </p>
@@ -43,7 +43,7 @@ export default function AboutPage() {
 
       {/* Mission Section */}
       <section className="py-24">
-        <div className="container px-4 md:px-6">
+        <div className="container-center ">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
