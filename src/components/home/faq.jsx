@@ -34,7 +34,7 @@ const faqs = [
 export function FAQ() {
   return (
     <div className="w-full dark:bg-accent bg-violet-50 py-24 sm:py-32">
-      <div className="">
+      <div className="container-center">
         <div className="mx-auto max-w-2xl lg:text-center">
           <motion.h2
             className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
