@@ -119,9 +119,9 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t pb-8 pt-8">
-        <div className="flex items-center justify-between text-sm text-muted-foreground px-8 md:px-16 lg:px-20 mx-auto">
-          <div className="">
+      <div className="border-t pb-8 pt-4">
+        <div className="container-center  flex sm:flex-row flex-col items-center justify-between text-sm text-muted-foreground ">
+          <div className="mt-4">
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </div>
           <div className="flex">
@@ -133,7 +133,7 @@ export function Footer() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="space-x-4"
               > 
-                <ul className="flex space-x-4">
+                <ul className="mt-4 flex space-x-4">
                   <li>
                     <Link href="/privacy" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Privacy</Link>     
                   </li>
