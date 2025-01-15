@@ -70,7 +70,7 @@ export function Footer() {
                   </Link>
                 </Button>
                 <Button variant="ghost" size="icon" asChild>
-                  <Link href="mailto:contact@inventivelabs.ai">
+                  <Link href="mailto:info@inventivelabs.co">
                     <Mail className="h-4 w-4" />
                     <span className="sr-only">Email</span>
                   </Link>
