@@ -105,7 +105,17 @@ export function Footer() {
             ))}
           </div>
           <div className="grid gap-8 grid-cols-1 mt-10">
+          <motion.div
+                key="Subscribe"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="space-y-4"
+              >
+                <h3 className="text-sm font-medium">Let's Connect</h3>
               <NewsletterFooter />
+            </motion.div>
           </div>
         </div>
       </div>

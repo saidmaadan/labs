@@ -75,9 +75,9 @@ export function NewsletterFooter({ className }) {
         className="container "
       >
         <div className="">
-          <motion.div variants={fadeIn('up')} className="space-y-4">
+          <motion.div variants={fadeIn('up')} className="space-y-2">
             <h3 className="text-sm text-muted-foreground ">
-            Subscribe to ours newsletter
+            Subscribe to our newsletter
             </h3>
             
           </motion.div>
@@ -85,21 +85,21 @@ export function NewsletterFooter({ className }) {
             <motion.form
               variants={fadeIn('up')}
               onSubmit={form.handleSubmit(onSubmit)}
-              className="mt-8 flex gap-1 w-full"
+              className="mt-4 flex gap-1 w-full"
             >
               
               <FormField
-                className="w-[300px] "
+                className="w-full"
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
-                        placeholder="Enter your email"
+                        placeholder="Enter your email address"
                         {...field}
                         disabled={isLoading}
-                        className="h-12 min-w-[250px] "
+                        className="h-12 xl:min-w-[300px] lg:min-w-[250px] md:min-w-[450px] sm:min-w-[400px] min-w-[250px]"
                       />
                     </FormControl>
                     <FormMessage />
